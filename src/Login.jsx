@@ -1,5 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "./utils/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [emailId, setEmailId] = useState("joseph@yopmail.com");
@@ -7,11 +10,15 @@ const Login = () => {
     const [successMsg, setSuccessMsg] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate;
+
     const handleLogin = async() => {
         setSuccessMsg("");
         setErrorMsg("");
         try {
             const res = await axios.post("/api/login", { emailId, password }, { withCredentials: true } );
+            dispatch(addUser(res.data));
             const displayMessage = res?.data?.displayMessage || res?.data?.message || "Logged in successfully";
             setSuccessMsg(displayMessage);
         } catch (error) {
