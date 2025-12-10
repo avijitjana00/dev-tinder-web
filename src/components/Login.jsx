@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addUser } from "./utils/userSlice";
+import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -11,7 +11,7 @@ const Login = () => {
     const [errorMsg, setErrorMsg] = useState("");
 
     const dispatch = useDispatch();
-    const navigate = useNavigate;
+    const navigate = useNavigate();
 
     const handleLogin = async() => {
         setSuccessMsg("");
@@ -21,6 +21,7 @@ const Login = () => {
             dispatch(addUser(res.data));
             const displayMessage = res?.data?.displayMessage || res?.data?.message || "Logged in successfully";
             setSuccessMsg(displayMessage);
+            setTimeout(() => navigate("/feed"), 800); // allow message to show briefly
         } catch (error) {
             const apiMsg = error?.response?.data?.message || error?.response?.data?.displayMessage;
             setErrorMsg(apiMsg || "Login failed. Please try again.");
