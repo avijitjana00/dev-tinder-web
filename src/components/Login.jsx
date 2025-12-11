@@ -2,58 +2,45 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { setMessage } from "../utils/messageSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [emailId, setEmailId] = useState("joseph@yopmail.com");
     const [password, setPassword] = useState("Joseph@123");
-    const [successMsg, setSuccessMsg] = useState("");
-    const [errorMsg, setErrorMsg] = useState("");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleLogin = async() => {
-        setSuccessMsg("");
-        setErrorMsg("");
+    const handleLogin = async () => {
         try {
-            const res = await axios.post("/api/login", { emailId, password }, { withCredentials: true } );
+            const res = await axios.post("/api/login", { emailId, password }, { withCredentials: true });
             dispatch(addUser(res.data));
             const displayMessage = res?.data?.displayMessage || res?.data?.message || "Logged in successfully";
-            setSuccessMsg(displayMessage);
-            setTimeout(() => navigate("/feed"), 800); // allow message to show briefly
+            dispatch(setMessage({ message: displayMessage, type: "success" }));
+            setTimeout(() => navigate("/feed"), 1000); // allow message to show briefly
         } catch (error) {
             const apiMsg = error?.response?.data?.message || error?.response?.data?.displayMessage;
-            setErrorMsg(apiMsg || "Login failed. Please try again.");
+            dispatch(setMessage({ message: "Login failed. Please try again with enter proper credential.", type: "error" }));
         }
-    }
+    };
     return (
         <div className="flex justify-center my-40">
             <div className="card bg-black w-96 shadow-xl">
                 <div className="card-body space-y-2">
                     <h2 className="card-title justify-center">Login</h2>
-                    {successMsg && (
-                        <div className="alert alert-success text-sm">
-                            {successMsg}
-                        </div>
-                    )}
-                    {errorMsg && (
-                        <div className="alert alert-error text-sm">
-                            {errorMsg}
-                        </div>
-                    )}
                     <div>
                         <label className="form-control w-full max-w-xs py-4">
                             <div className="label">
                                 <span className="label-text m-1">Email Id</span>
                             </div>
-                            <input type="text" value={emailId} className="input input-bordered w-full max-w-xs" onChange={(e)=> setEmailId(e.target.value)} />
+                            <input type="text" value={emailId} className="input input-bordered w-full max-w-xs" onChange={(e) => setEmailId(e.target.value)} />
                         </label>
                         <label className="form-control w-full max-w-xs py-4">
                             <div className="label">
                                 <span className="label-text m-1">Password</span>
                             </div>
-                            <input type="password" value = {password} className="input input-bordered w-full max-w-xs" onChange={(e)=> setPassword(e.target.value)} />
+                            <input type="password" value={password} className="input input-bordered w-full max-w-xs" onChange={(e) => setPassword(e.target.value)} />
                         </label>
                     </div>
                     <div className="card-actions flex justify-center">

@@ -1,8 +1,27 @@
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { removeUser } from "../utils/userSlice";
+import { setMessage } from "../utils/messageSlice";
 
 const NavBar = () => {
     const user = useSelector((store) => store?.user?.user?.result?.data);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        try {
+            await axios.post("/api/logout", {}, { withCredentials: true });
+            dispatch(removeUser());
+            dispatch(setMessage({ message: "Logged out successfully!", type: "success" }));
+            setTimeout(() => {
+                navigate("/login");
+            }, 1000); // Show message for 1 second before redirect
+        } catch (error) {
+            dispatch(setMessage({ message: "Error during logout", type: "error" }));
+        }
+    };
     return (
         <div className="navbar bg-base-300">
             <div className="flex-1">
@@ -31,7 +50,7 @@ const NavBar = () => {
                                 </Link>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li><a onClick={handleLogout}>Logout</a></li>
                         </ul>
                     </div>
                 </div>
