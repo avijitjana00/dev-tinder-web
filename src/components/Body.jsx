@@ -3,7 +3,6 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { BASE_URL } from '../common/constants.js';
 import { addUser } from "../utils/userSlice";
 import { useEffect } from "react";
 

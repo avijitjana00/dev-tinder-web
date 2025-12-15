@@ -11,17 +11,17 @@ function App() {
 
   return (
     <>
-    <Provider store={appStore}>
-      <MessageDisplay />
-      <BrowserRouter basename="/">
-        <Routes>
-          <Route path="/" element={<Body />}>
-          <Route path="/feed" element={<Feed />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile/view" element={<Profile />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Provider store={appStore}>
+        <MessageDisplay />
+        <BrowserRouter basename="/">
+          <Routes>
+            <Route path="/" element={<Body />}>
+              <Route path="/feed" element={<Feed />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile/view" element={<Profile />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </Provider>
     </>
   );
