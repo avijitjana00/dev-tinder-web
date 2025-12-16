@@ -1,10 +1,10 @@
 const Footer = () => {
     return (
-        <footer className="footer bg-base-300 text-neutral-content p-4 fixed bottom-0">
+        <footer className="navbar bg-base-300 text-neutral-content fixed bottom-0 h-12">
             <aside className="grid-flow-col items-center">
                 <svg
-                    width="36"
-                    height="36"
+                    width="24"
+                    height="24"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                     fillRule="evenodd"
@@ -15,12 +15,12 @@ const Footer = () => {
                 </svg>
                 <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
             </aside>
-            <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+            <nav className="grid-flow-col gap-4 place-self-end justify-self-end ml-auto">
                 <a>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
+                        width="20"
+                        height="20"
                         viewBox="0 0 24 24"
                         className="fill-current">
                         <path
@@ -30,8 +30,8 @@ const Footer = () => {
                 <a>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
+                        width="20"
+                        height="20"
                         viewBox="0 0 24 24"
                         className="fill-current">
                         <path
@@ -41,8 +41,8 @@ const Footer = () => {
                 <a>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
+                        width="20"
+                        height="20"
                         viewBox="0 0 24 24"
                         className="fill-current">
                         <path
