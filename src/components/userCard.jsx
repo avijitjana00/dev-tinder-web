@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { setMessage } from "../utils/messageSlice";
 import axios from "axios";
 import { removeUserFromFeed } from "../utils/feedSlice";
+import { DEFAULT_PROFILE_IMAGE } from "../common/constants";
 
 const UserCard = ({ user }) => {
     const { _id, firstName, lastName, age, gender, photoUrl, skills, about } = user;
@@ -21,7 +22,7 @@ const UserCard = ({ user }) => {
     return (<div className="card bg-base-300 w-96 shadow-2xl">
         <figure>
             <img
-                src={photoUrl}
+                src={photoUrl || DEFAULT_PROFILE_IMAGE}
                 alt="photo" />
         </figure>
         <div className="card-body">

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { removeUser } from "../utils/userSlice";
 import { setMessage } from "../utils/messageSlice";
+import { DEFAULT_PROFILE_IMAGE } from "../common/constants";
 
 const NavBar = () => {
     const user = useSelector((store) => store?.user?.user?.result?.data);
@@ -37,7 +38,7 @@ const NavBar = () => {
                             <div className="w-10 rounded-full">
                                 <img
                                     alt="user profile photo"
-                                    src={user?.photoUrl} />
+                                    src={user?.photoUrl || DEFAULT_PROFILE_IMAGE} />
                             </div>
                         </div>
                         <ul

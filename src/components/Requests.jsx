@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMessage } from "../utils/messageSlice";
 import { useEffect } from "react";
 import { addRequest, removeRequest } from "../utils/requestSlice";
+import { DEFAULT_PROFILE_IMAGE } from "../common/constants";
 
 const Requests = () => {
     const requests = useSelector((store) => store?.request || []);
@@ -45,7 +46,7 @@ const Requests = () => {
                     <div key={_id} className="flex justify-between items-center m-4 p-4 rounded-lg bg-base-300 w-2/3 mx-auto">
                         <div className="flex items-center mb-4">
                             <div>
-                                <img alt="photo" className="w-65 h-35 rounded-full object-cover" src={photoUrl} />
+                                <img alt="photo" className="w-65 h-35 rounded-full object-cover" src={photoUrl || DEFAULT_PROFILE_IMAGE} />
                             </div>
                             <div className="text-left mx-4">
                                 <h2 className="font-bold text-xl">{firstName + " " + lastName}</h2>

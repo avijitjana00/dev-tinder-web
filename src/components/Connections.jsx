@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/connectinoSlice";
+import { DEFAULT_PROFILE_IMAGE } from "../common/constants";
 
 const Connections = () => {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Connections = () => {
                 return (
                     <div key={_id} className="flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
                         <div>
-                            <img alt="photo" className="w-80 h-20 rounded-full object-cover" src={photoUrl} />
+                            <img alt="photo" className="w-80 h-20 rounded-full object-cover" src={photoUrl || DEFAULT_PROFILE_IMAGE} />
                         </div>
                         <div className="text-left mx-4">
                             <h2 className="font-bold text-xl">{firstName + " " + lastName}</h2>
