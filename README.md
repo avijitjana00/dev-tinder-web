@@ -22,7 +22,7 @@ React Version:
 
 🏗️ Installation & Setup
     Clone the repository:
-        git clone https://github.com/your-username/devTinder-frontend.git
+        git clone https://github.com/avijitjana00/dev-tinder-web.git
     Navigate to the project directory:
         cd project-folder-name
     Install dependencies:
